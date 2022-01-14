@@ -106,6 +106,12 @@ menu = () => {
     }
 }
 
+
+startScript = () => {
+    runMenu = true;
+    menu();
+}
+
+
 let runMenu = true;
 let menuChoice = "";
-menu();

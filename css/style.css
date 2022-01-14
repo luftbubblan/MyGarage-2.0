@@ -1,3 +1,43 @@
+body {
+    margin: 0;
+}
+
+main {
+    background-image: url("../img/garage-background-dark.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding-top: 50px;
+    height: 94vh;
+}
+
 h1 {
-    color: purple;
+    color: white;
+}
+
+#container {
+    width: 50vw;
+    margin: 0 auto;
+    background-color: rgb(51, 0, 51);
+    height: 800px;
+    padding: 50px 100px 0 100px;
+    opacity: 0.8;
+}
+
+#openMenuButton {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#openMenuButton:hover {
+    background-color: #fcefec;
+    color: black;
 }
