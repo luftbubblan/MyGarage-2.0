@@ -26,6 +26,7 @@ let garage = {
 
 
 parkCar = () => {
+    console.log("Function:parkCar")
     let brand = prompt("PARK A CAR\nBrand");
     let model = prompt("PARK A CAR\nModel");
     let plateNumber = prompt("PARK A CAR\nPlatenumber");
@@ -37,19 +38,17 @@ parkCar = () => {
 
     //adds the car to the garage
     garage.parkCar(new Car(brand, model, plateNumber, color, parkingSpace));
-
-    //sorts the garage
-    sortingTheGarageAfterParkingspacePosition(garage.parkingSpace);
 }
 
 
 sortingTheGarageAfterParkingspacePosition = (allParkedCars) => {
-    // console.log("sorting");
+    console.log("Function:sortingTheGarageAfterParkingspacePosition")
     allParkedCars.sort(function(a, b){return a.parkingSpace - b.parkingSpace});
 }
 
 
 positionCheck = (input) => {
+    console.log("Function:positionCheck")
     //checks if the position is a positive number
     if(Math.sign(input) != 1) {
         input = prompt('PARKING SPACE NEEDS TO BE A POSITIVE NUMBER\nWhat parking space do you want to park the car in (positive number)');
@@ -73,6 +72,7 @@ positionCheck = (input) => {
 
 
 showParkedCars = () => {
+    console.log("Function:showParkedCars")
     for(let i in garage.parkingSpace) {
         alert(`SHOW PARKED CARS\n${garage.parkingSpace[i].present()}`);
     }
@@ -80,6 +80,7 @@ showParkedCars = () => {
 
 
 menu = () => {
+    console.log("Function:menu")
     while(runMenu) {
         menuChoice = prompt('MENU\ntype "park" to park a new car\ntype "show" to show all parked cars\ntype "exit" to exit');
         switch(menuChoice) {
@@ -88,11 +89,14 @@ menu = () => {
                 parkCar();
                 break;
             case "show":
+                //sorts the garage
+                sortingTheGarageAfterParkingspacePosition(garage.parkingSpace);
                 console.log("show all cars");
                 showParkedCars();
                 break;
             case "exit":
                 console.log("exit");
+                //stops the while loop
                 runMenu = false;
                 break;
             default:
