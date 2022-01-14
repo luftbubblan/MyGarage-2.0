@@ -26,11 +26,11 @@ let garage = {
 
 
 parkCar = () => {
-    let brand = prompt("PARK A CAR\nBrand")
-    let model = prompt("PARK A CAR\nModel")
-    let plateNumber = prompt("PARK A CAR\nPlatenumber")
-    let color = prompt("PARK A CAR\nColor")
-    let parkingSpace = prompt("PARK A CAR\nParkingspace position")
+    let brand = prompt("PARK A CAR\nBrand");
+    let model = prompt("PARK A CAR\nModel");
+    let plateNumber = prompt("PARK A CAR\nPlatenumber");
+    let color = prompt("PARK A CAR\nColor");
+    let parkingSpace = prompt("PARK A CAR\nParkingspace position");
 
     //checks so the position is valid
     parkingSpace = positionCheck(parkingSpace);
@@ -74,7 +74,7 @@ positionCheck = (input) => {
 
 showParkedCars = () => {
     for(let i in garage.parkingSpace) {
-        alert(`SHOW PARKED CARS\n${garage.parkingSpace[i].present()}`)
+        alert(`SHOW PARKED CARS\n${garage.parkingSpace[i].present()}`);
     }
 }
 
@@ -96,7 +96,7 @@ menu = () => {
                 runMenu = false;
                 break;
             default:
-                console.log("Menu default")
+                console.log("Menu default");
                 break;
         }
     }
