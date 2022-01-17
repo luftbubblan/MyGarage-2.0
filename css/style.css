@@ -20,7 +20,7 @@ h1 {
     margin: 0 auto;
     background-color: rgb(51, 0, 51);
     height: 800px;
-    padding: 50px 100px 0 100px;
+    padding: 30px 80px 0 80px;
     opacity: 0.8;
 }
 
@@ -40,4 +40,15 @@ h1 {
 #openMenuButton:hover {
     background-color: #fcefec;
     color: black;
+}
+
+#textArea {
+    opacity: 1;
+    height: auto;
+    min-height: 400px;
+    width: 200px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-weight: 500;
 }

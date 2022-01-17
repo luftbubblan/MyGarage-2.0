@@ -7,26 +7,31 @@ class Car {
         this.parkingSpace = parkingSpace;
     }
     
+
     present() {
-        return `Parkingspace: ${this.parkingSpace}\nBrand: ${this.brand}\nModel: ${this.model}\nColor: ${this.color}\nPlatenumber: ${this.plateNumber}`;
+        return `Parkingspace: ${this.parkingSpace}<br>Brand: ${this.brand}<br>Model: ${this.model}<br>Color: ${this.color}<br>Platenumber: ${this.plateNumber}<br>--------------------<br>`;
     }
 }
 
 
 let garage = {
     numberOfCars: 0,
-    parkingSpace: [],
+    parkingSpaces: [],
 
     parkCar: function(newCar) {
-        this.parkingSpace.push(newCar);
+        this.parkingSpaces.push(newCar);
         this.numberOfCars++;
-        return newCar;
+    },
+
+    removeCar: function(positionInArray) {
+        this.parkingSpaces.splice(positionInArray, 1);
+        this.numberOfCars--;
     },
 }
 
 
 parkCar = () => {
-    console.log("Function:parkCar")
+    console.log("Function: parkCar");
     let brand = prompt("PARK A CAR\nBrand");
     let model = prompt("PARK A CAR\nModel");
     let plateNumber = prompt("PARK A CAR\nPlatenumber");
@@ -42,13 +47,13 @@ parkCar = () => {
 
 
 sortingTheGarageAfterParkingspacePosition = (allParkedCars) => {
-    console.log("Function:sortingTheGarageAfterParkingspacePosition")
+    console.log("Function: sortingTheGarageAfterParkingspacePosition")
     allParkedCars.sort(function(a, b){return a.parkingSpace - b.parkingSpace});
 }
 
 
 positionCheck = (input) => {
-    console.log("Function:positionCheck")
+    console.log("Function: positionCheck");
     //checks if the position is a positive number
     if(Math.sign(input) != 1) {
         input = prompt('PARKING SPACE NEEDS TO BE A POSITIVE NUMBER\nWhat parking space do you want to park the car in (positive number)');
@@ -57,12 +62,12 @@ positionCheck = (input) => {
 
     //checks if the space is occupied and informs the user what spaces are occupied
     let freeSpaces = "";
-    for(let i in garage.parkingSpace) {
-        freeSpaces += garage.parkingSpace[i].parkingSpace + ", ";
+    for(let i in garage.parkingSpaces) {
+        freeSpaces += garage.parkingSpaces[i].parkingSpace + ", ";
     }
 
-    for(let i in garage.parkingSpace) {
-        if(input == garage.parkingSpace[i].parkingSpace) {
+    for(let i in garage.parkingSpaces) {
+        if(input == garage.parkingSpaces[i].parkingSpace) {
             input = prompt(`PARKING SPACE IS ALREADY OCCUPIED\n${freeSpaces} are all occupied\nWhat parking space do you want to park the car in (positive number)`);
             input = positionCheck(input);
         }
@@ -72,35 +77,51 @@ positionCheck = (input) => {
 
 
 showParkedCars = () => {
-    console.log("Function:showParkedCars")
-    for(let i in garage.parkingSpace) {
-        alert(`SHOW PARKED CARS\n${garage.parkingSpace[i].present()}`);
+    console.log("Function: showParkedCars");
+    let allParkedCars = "";
+    for(let i in garage.parkingSpaces) {
+        allParkedCars += garage.parkingSpaces[i].present();
+    }
+    document.getElementById("textArea").innerHTML = allParkedCars;
+}
+
+
+removedParkedCars = () => {
+    console.log("Function: removeParkedCars");
+    let remove = prompt("REMOVE\nremove the car in parkingspace");
+    for(let i in garage.parkingSpaces) {
+        if(remove == garage.parkingSpaces[i].parkingSpace) {
+            garage.removeCar(i);
+        }
     }
 }
 
 
 menu = () => {
-    console.log("Function:menu")
+    console.log("Function: menu");
     while(runMenu) {
-        menuChoice = prompt('MENU\ntype "park" to park a new car\ntype "show" to show all parked cars\ntype "exit" to exit');
+        menuChoice = prompt('MENU\ntype "park" to park a new car\ntype "show" to show all parked cars\ntype "remove" to remove a car\ntype "exit" to exit');
         switch(menuChoice) {
             case "park":
-                console.log("park a car");
                 parkCar();
                 break;
             case "show":
                 //sorts the garage
-                sortingTheGarageAfterParkingspacePosition(garage.parkingSpace);
-                console.log("show all cars");
+                sortingTheGarageAfterParkingspacePosition(garage.parkingSpaces);
                 showParkedCars();
+                runMenu = false;
+                break;
+            case "remove":
+                sortingTheGarageAfterParkingspacePosition(garage.parkingSpaces);
+                removedParkedCars();
                 break;
             case "exit":
-                console.log("exit");
+                console.log("Exit menu");
                 //stops the while loop
                 runMenu = false;
                 break;
             default:
-                console.log("Menu default");
+                console.log("Menu default value");
                 break;
         }
     }
@@ -108,8 +129,10 @@ menu = () => {
 
 
 startScript = () => {
+    console.log("Function: startScript")
     runMenu = true;
     menu();
+    console.log("Exit startScript")
 }
 
 
