@@ -39,6 +39,7 @@ button {
     cursor: pointer;
     border-radius: 5px;
     width: 160px;
+    margin-top: 25px;
 }
 
 button:hover {
@@ -49,8 +50,8 @@ button:hover {
 #output {
     opacity: 1;
     height: auto;
-    min-height: 400px;
-    width: 200px;
+    height: 120px;
+    width: 160px;
     background-color: rgba(0, 0, 0, 0.700);
     color: white;
     border: 3px solid white;
@@ -76,4 +77,26 @@ header {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+}
+
+#parkingGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+	grid-template-rows: repeat(3, 150px);
+    border: 3px solid black;
+    width: 700px;
+    height: 400px;
+}
+
+.parking-ground {
+    background-color: grey;
+    border: 1px solid black;
+    font-size: xx-large;
+    text-align: center;
+    vertical-align: text-bottom;
+    padding-top: 30px;
+}
+
+#mid-lane {
+    grid-column: 1 / 8;
 }

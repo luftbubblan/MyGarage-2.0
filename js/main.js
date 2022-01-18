@@ -33,22 +33,33 @@ let garage = {
 
     unparkCar: function() {
         console.log("Method: unparkCar");
-        let remove = prompt("UNPARK A CAR\nremove the car in parkingspace");
+        parkingSpace = prompt("UNPARK A CAR\nremove the car in parkingspace");
         for(let i in this.parkingSpaces) {
-            if(remove == this.parkingSpaces[i].parkingSpace) {
+            if(parkingSpace == this.parkingSpaces[i].parkingSpace) {
                 this.removeCar(i);
             }
         }
-
+        // change the parkingspace to grey in the grid
+        this.changeToGrey(parkingSpace);
     },
 
-    showParkedCars: function() {
-        console.log("Method: showParkedCars");
-        let allParkedCars = "";
-            for(let i in this.parkingSpaces) {
-            allParkedCars += this.parkingSpaces[i].present();
+    showCarInSpace: function() {
+        console.log("Method: showCarInSpace");
+        parkingSpace = prompt("SHOW CAR\nshow the car in parkingspace");
+
+        if(parkingSpace > 14) {
+            parkingSpace = prompt("SHOW CAR\nthe garage only has 14 parkingspaces\nshow the car in parkingspace");
         }
-        document.getElementById("output").innerHTML = allParkedCars;
+        spaceIsEmpty = true;
+        for(let i in this.parkingSpaces) {
+            if(parkingSpace == this.parkingSpaces[i].parkingSpace) {
+                document.getElementById("output").innerHTML = this.parkingSpaces[i].present();
+                spaceIsEmpty = false;
+            }
+        }
+        if(spaceIsEmpty == true) {
+            document.getElementById("output").innerHTML = "There is no car parked in parkingspace " + parkingSpace;
+        }
     },
 
     parkCar: function() {
@@ -73,10 +84,13 @@ let garage = {
     
         //checks so the position is valid
         parkingSpace = this.positionCheck(parkingSpace);
+
+        // change the parkingspace to red in the grid
+        this.changeToRed(parkingSpace);
     
         //adds the car to the garage
         this.parkingSpaces.push(new Car(brand, model, plateNumber, color, parkingSpace));
-        this.numberOfCars++
+        this.numberOfCars++;
     },
 
     positionCheck: function(parkingSpace) {
@@ -93,7 +107,7 @@ let garage = {
         }
     
         //checks if the space is occupied and informs the user what spaces are occupied
-        let freeSpaces = ""
+        freeSpaces = ""
         for(let i in this.parkingSpaces) {
             freeSpaces += this.parkingSpaces[i].parkingSpace + ", ";
         }
@@ -105,6 +119,20 @@ let garage = {
             }
         }
         return parkingSpace;
+    },
+
+    changeToRed: function(parkingSpace) {
+        console.log("Method: changeToRed");
+        document.getElementById("pos" + parkingSpace).style.backgroundColor = "red";
+    },
+
+    changeToGrey: function(parkingSpace) {
+        console.log("Method: changeToGray");
+        document.getElementById("pos" + parkingSpace).style.backgroundColor = "gray";
+    },
+
+    clearOutput: function() {
+        document.getElementById("output").innerHTML = "";
     }
 }
 
@@ -112,11 +140,15 @@ let garage = {
 parkACar = () => {
     garage.parkCar();
     garage.sortGarage();
-    garage.showParkedCars();
+    garage.clearOutput();
 }
 
 
 unparkACar = () => {
     garage.unparkCar();
-    garage.showParkedCars();
+    garage.clearOutput();
+}
+
+getInfoOfCar = () => {
+    garage.showCarInSpace();
 }
