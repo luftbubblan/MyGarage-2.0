@@ -22,9 +22,12 @@ h1 {
     height: 800px;
     padding: 30px 80px 0 80px;
     opacity: 0.8;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 150px 1fr;
 }
 
-#openMenuButton {
+button {
     background-color: #f4511e;
     border: none;
     color: white;
@@ -35,14 +38,15 @@ h1 {
     transition: 0.3s;
     cursor: pointer;
     border-radius: 5px;
+    width: 160px;
 }
 
-#openMenuButton:hover {
+button:hover {
     background-color: #fcefec;
     color: black;
 }
 
-#textArea {
+#output {
     opacity: 1;
     height: auto;
     min-height: 400px;
@@ -51,4 +55,24 @@ h1 {
     color: black;
     border: 1px solid black;
     font-weight: 500;
+}
+
+header {
+    grid-column: 1 / 3;
+    text-align: center;
+}
+
+#left-side {
+    grid-column: 1 / 2;
+}
+
+#right-side {
+    grid-column: 2 / 3;
+    
+}
+
+.box {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }

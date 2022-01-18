@@ -10,11 +10,21 @@
 <body>
     <main>
         <div id="container">
-            <h1>This is my Garage</h1>
+            <header>
+                <h1>Welcome my Garage</h1>
+            </header>
             
-            <button id="openMenuButton" onclick="startScript()">Open menu</button>
-            
-            <div id="textArea"></div>
+            <div id="left-side" class="box">
+                <!-- <button id="openMenuButton" onclick="startScript()">Open menu</button> -->
+                
+                <div id="output"></div>
+            </div>
+
+            <div id="right-side" class="box">
+                <button id="park-car" onclick="parkACar()">Park a car</button>
+
+                <button id="unpark-car" onclick="unparkACar()">Unpark a car</button>
+            </div>
         </div>
     </main>
 
