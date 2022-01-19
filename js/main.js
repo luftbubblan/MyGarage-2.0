@@ -15,20 +15,58 @@ class Car {
 
 
 let garage = {
-    numberOfCars: 0,
     parkingspots: [],
+
+    parkCar: function() {
+        console.log("Method: parkCar");
+        brand = ""
+        model = ""
+        plateNumber = ""
+        color = ""
+        while(brand === "") {
+            brand = prompt("PARK A CAR\nWhat Brand");
+        }
+        while(model === "") {
+            model = prompt("PARK A CAR\nWhat Model");
+        }
+        while(plateNumber === "") {
+            plateNumber = prompt("PARK A CAR\nWhat Platenumber");
+        }
+        while(color === "") {
+            color = prompt("PARK A CAR\nWhat Color");
+        }
+        parkingspot = prompt("PARK A CAR\nPick a free parkingspot");
     
+        //checks so the position is valid
+        parkingspot = this.parkingCheck(parkingspot);
 
-
-    removeCar: function(positionInArray) {
-        console.log("Method: removeCar");
-        this.parkingspots.splice(positionInArray, 1);
-        this.numberOfCars--;
+        // change the parkingspot to red in the grid
+        this.changeToRed(parkingspot);
+    
+        //adds the car to the garage
+        this.parkingspots.push(new Car(brand, model, plateNumber, color, parkingspot));
     },
 
-    sortGarage: function() {
-        console.log("Method: sortingTheGarage")
-        this.parkingspots.sort(function(a, b){return a.parkingspot - b.parkingspot});
+    parkingCheck: function(parkingspot) {
+        console.log("Method: parkingCheck");
+        //checks if the position is a positive number and between 1-14
+        while(Math.sign(parkingspot) != 1 || parkingspot > 14) {
+            parkingspot = prompt('PARKINGSPOT NEED TO BE A POSITIVE NUMBER\nWhat parkingspot do you want to park the car in (1-14)');
+        }
+    
+        //checks if the spot is occupied and informs the user what spots are occupied
+        freespots = ""
+        for(let i in this.parkingspots) {
+            freespots += this.parkingspots[i].parkingspot + ", ";
+        }
+        
+        for(let i in this.parkingspots) {
+            if(parkingspot == this.parkingspots[i].parkingspot) {
+                parkingspot = prompt(`PARKINGSPOT IS ALREADY OCCUPIED\n${freespots} are all occupied\nWhat parking spot do you want to park the car in (1-14)`);
+                parkingspot = this.parkingCheck(parkingspot);
+            }
+        }
+        return parkingspot;
     },
 
     unparkCar: function() {
@@ -36,7 +74,7 @@ let garage = {
         parkingspot = prompt("UNPARK A CAR\nRemove the car in parkingspot");
         for(let i in this.parkingspots) {
             if(parkingspot == this.parkingspots[i].parkingspot) {
-                this.removeCar(i);
+                this.parkingspots.splice(i, 1);
             }
         }
         // change the parkingspot to grey in the grid
@@ -69,59 +107,6 @@ let garage = {
         return "There is no car parked in parkingspot " + parkingspot;
     },
 
-    parkCar: function() {
-        console.log("Method: parkCar");
-        brand = ""
-        model = ""
-        plateNumber = ""
-        color = ""
-        while(brand === "") {
-            brand = prompt("PARK A CAR\nWhat Brand");
-        }
-        while(model === "") {
-            model = prompt("PARK A CAR\nWhat Model");
-        }
-        while(plateNumber === "") {
-            plateNumber = prompt("PARK A CAR\nWhat Platenumber");
-        }
-        while(color === "") {
-            color = prompt("PARK A CAR\nWhat Color");
-        }
-        parkingspot = prompt("PARK A CAR\nPick a free parkingspot");
-    
-        //checks so the position is valid
-        parkingspot = this.parkingCheck(parkingspot);
-
-        // change the parkingspot to red in the grid
-        this.changeToRed(parkingspot);
-    
-        //adds the car to the garage
-        this.parkingspots.push(new Car(brand, model, plateNumber, color, parkingspot));
-        this.numberOfCars++;
-    },
-
-    parkingCheck: function(parkingspot) {
-        console.log("Method: parkingCheck");
-        //checks if the position is a positive number and between 1-14
-        while(Math.sign(parkingspot) != 1 || parkingspot > 14) {
-            parkingspot = prompt('PARKINGSPOT NEED TO BE A POSITIVE NUMBER\nWhat parkingspot do you want to park the car in (1-14)');
-        }
-    
-        //checks if the spot is occupied and informs the user what spots are occupied
-        freespots = ""
-        for(let i in this.parkingspots) {
-            freespots += this.parkingspots[i].parkingspot + ", ";
-        }
-        
-        for(let i in this.parkingspots) {
-            if(parkingspot == this.parkingspots[i].parkingspot) {
-                parkingspot = prompt(`PARKINGSPOT IS ALREADY OCCUPIED\n${freespots} are all occupied\nWhat parking spot do you want to park the car in (1-14)`);
-                parkingspot = this.parkingCheck(parkingspot);
-            }
-        }
-        return parkingspot;
-    },
-
     changeToRed: function(parkingspot) {
         console.log("Method: changeToRed");
         document.getElementById("pos" + parkingspot).style.backgroundColor = "red";
@@ -140,7 +125,6 @@ let garage = {
 
 document.getElementById("park-car").addEventListener("click", function() {
     garage.parkCar();
-    garage.sortGarage();
     garage.clearOutput();
 })
 
