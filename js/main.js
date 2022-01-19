@@ -47,29 +47,26 @@ let garage = {
         console.log("Method: showCarInspot");
         parkingspot = prompt("SHOW CAR\nShow the car in parkingspot");
 
-        parkingspot = this.spotCheck(parkingspot)
+        message = this.spotCheck(parkingspot);
+
+        document.getElementById("output").innerHTML = message;
     },
 
     spotCheck: function(parkingspot) {
         console.log("Method: spotCheck");
-        //checks if the position is a positive number and 1-14
-        if(Math.sign(parkingspot) != 1  || parkingspot > 14 || parkingspot < 1) {
+        //checks if the position is a positive number and between 1-14
+        while(Math.sign(parkingspot) != 1  || parkingspot > 14 || parkingspot < 1) {
             parkingspot = prompt('SHOW CAR\nThe parkingspot need to be a positive number\nWhat car do you want to show (1-14)');
-            parkingspot = this.spotCheck(parkingspot);
         }
 
-        // checks if the spot is empty or not
-        spotIsEmpty = true;
+        // returns the information of the car if the parking spot is pressent(occupied) in the array
         for(let i in this.parkingspots) {
             if(parkingspot == this.parkingspots[i].parkingspot) {
-                document.getElementById("output").innerHTML = this.parkingspots[i].present();
-                spotIsEmpty = false;
-            }
+                return this.parkingspots[i].present();
+            } 
         }
-        if(spotIsEmpty == true) {
-            document.getElementById("output").innerHTML = "There is no car parked in parkingspot " + parkingspot;
-        }
-        return parkingspot
+        // return a message if the parking spot is not pressent(occupied) in the array
+        return "There is no car parked in parkingspot " + parkingspot;
     },
 
     parkCar: function() {
@@ -105,10 +102,9 @@ let garage = {
 
     parkingCheck: function(parkingspot) {
         console.log("Method: parkingCheck");
-        //checks if the position is a positive number and 1-14
-        if(Math.sign(parkingspot) != 1 || parkingspot > 14) {
+        //checks if the position is a positive number and between 1-14
+        while(Math.sign(parkingspot) != 1 || parkingspot > 14) {
             parkingspot = prompt('PARKINGSPOT NEED TO BE A POSITIVE NUMBER\nWhat parkingspot do you want to park the car in (1-14)');
-            parkingspot = this.parkingCheck(parkingspot);
         }
     
         //checks if the spot is occupied and informs the user what spots are occupied
