@@ -48,8 +48,6 @@ let garage = {
         parkingspot = prompt("SHOW CAR\nShow the car in parkingspot");
 
         parkingspot = this.spotCheck(parkingspot)
-
-        
     },
 
     spotCheck: function(parkingspot) {
@@ -144,18 +142,17 @@ let garage = {
 }
 
 
-parkACar = () => {
+document.getElementById("park-car").addEventListener("click", function() {
     garage.parkCar();
     garage.sortGarage();
     garage.clearOutput();
-}
+})
 
-
-unparkACar = () => {
+document.getElementById("unpark-car").addEventListener("click", function() {
     garage.unparkCar();
     garage.clearOutput();
-}
+})
 
-getInfoOfCar = () => {
+document.getElementById("get-info").addEventListener("click", function() {
     garage.showCarInSpot();
-}
+})
