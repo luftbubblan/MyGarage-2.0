@@ -40,7 +40,7 @@ header {
     height: auto;
     height: 120px;
     width: 160px;
-    background-color: rgba(0, 0, 0, 0.700);
+    background-color: black;
     color: white;
     border: 3px solid white;
     font-weight: 500;
@@ -106,7 +106,7 @@ button:hover {
 #output {
     height: 11vw;
     width: 14vw;
-    font-size: 2vw;
+    font-size: 1.8vw;
 }
 
 button {
