@@ -45,6 +45,8 @@ let garage = {
     
         //adds the car to the garage
         this.parkingspots.push(new Car(brand, model, plateNumber, color, parkingspot));
+        
+        this.sortGarage();
     },
 
     parkingCheck: function(parkingspot) {
@@ -67,6 +69,11 @@ let garage = {
             }
         }
         return parkingspot;
+    },
+
+    sortGarage: function() {
+        console.log("Method: sortingTheGarage")
+        this.parkingspots.sort(function(a, b){return a.parkingspot - b.parkingspot});
     },
 
     unparkCar: function() {
