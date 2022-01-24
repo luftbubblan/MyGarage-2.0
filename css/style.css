@@ -46,7 +46,7 @@ header {
     font-size: larger;
 }
 
-button {
+.big-btn {
     background-color: #f4511e;
     border: none;
     color: white;
@@ -61,7 +61,7 @@ button {
     margin-top: 25px;
 }
 
-button:hover {
+.big-btn:hover {
     background-color: #fcefec;
     color: black;
 }
@@ -87,14 +87,28 @@ button:hover {
     background-color: rgb(95, 95, 95);
     border: 1px solid black;
     font-size: xx-large;
-    text-align: center;
-    vertical-align: text-bottom;
-    padding-top: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.small-btn {
+    /* visibility: hidden; */
+}
+
+.btn-group {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 10px;
+    visibility: hidden;
 }
 
 #mid-lane {
     grid-column: 1 / 8;
 }
+
+
 
 @media screen and (max-width: 1099px) {
 
@@ -134,7 +148,7 @@ button:hover {
         border: 0.3vw solid white;
     }
 
-    button {
+    .big-btn {
         padding: 1vw 2vw;
         font-size: 3vw;
         width: 22vw;
