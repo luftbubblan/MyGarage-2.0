@@ -149,10 +149,12 @@ button:hover {
     #parkingGrid {
         grid-template-columns: repeat(7, 11vw);
         grid-template-rows: repeat(3, 15vw);
+        border: 0.3vw solid black;
     }
 
     .parking-ground {
         padding-top: 6vw;
         font-size: 3vw;
+        border: 0.1vw solid black;
     }
 }
