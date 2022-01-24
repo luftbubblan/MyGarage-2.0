@@ -116,12 +116,12 @@ let garage = {
 
     changeToRed: function(parkingspot) {
         console.log("Method: changeToRed");
-        document.getElementById("pos" + parkingspot).style.backgroundColor = "red";
+        document.getElementById("pos" + parkingspot).style.backgroundColor = "rgb(105, 0, 0)";
     },
 
     changeToGrey: function(parkingspot) {
         console.log("Method: changeToGray");
-        document.getElementById("pos" + parkingspot).style.backgroundColor = "gray";
+        document.getElementById("pos" + parkingspot).style.backgroundColor = "rgb(95, 95, 95)";
     },
 
     clearOutput: function() {

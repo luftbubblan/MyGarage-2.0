@@ -84,7 +84,7 @@ button:hover {
 }
 
 .parking-ground {
-    background-color: grey;
+    background-color: rgb(95, 95, 95);
     border: 1px solid black;
     font-size: xx-large;
     text-align: center;
