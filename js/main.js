@@ -124,7 +124,7 @@ for(let i = 0; i < 14; i++) {
     allParkingSpots[i].addEventListener("mouseover", function() {
         btnGroup[i].style.visibility="visible"
     })
-
+    //hiddes the buttons
     allParkingSpots[i].addEventListener("mouseout", function() {
         btnGroup[i].style.visibility="hidden"
     })
