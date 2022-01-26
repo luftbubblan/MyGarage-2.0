@@ -120,7 +120,7 @@ let btnGroup = document.querySelectorAll(".btn-group");
 let position = [];
 
 for(let i = 0; i < 14; i++) {
-    //shows the buttons on hover
+    //shows the buttons
     allParkingSpots[i].addEventListener("mouseover", function() {
         btnGroup[i].style.visibility="visible"
     })
@@ -129,7 +129,7 @@ for(let i = 0; i < 14; i++) {
         btnGroup[i].style.visibility="hidden"
     })
 
-    //park a car on hover-button click
+    //park a car on click
     position[i] = document.querySelector(`div#pos${i+1} > div > button:first-child`);
 
     position[i].addEventListener("click", function(e) {
@@ -138,7 +138,7 @@ for(let i = 0; i < 14; i++) {
         garage.parkCarInSpot(positionNumber);
     })
 
-    //unpark a car on hover-button click
+    //unpark a car on click
     position[i] = document.querySelector(`div#pos${i+1} > div > button:nth-child(2)`);
 
     position[i].addEventListener("click", function(e) {
@@ -147,7 +147,7 @@ for(let i = 0; i < 14; i++) {
         garage.unparkCarInSpot(positionNumber)
     })
 
-    //show info of a car on hover-button click
+    //show info of a car on click
     position[i] = document.querySelector(`div#pos${i+1} > div > button:last-child`);
 
     position[i].addEventListener("click", function(e) {
