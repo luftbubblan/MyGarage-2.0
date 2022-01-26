@@ -17,41 +17,8 @@ class Car {
 let garage = {
     parkingspots: [],
 
-    // parkCar: function() {
-    //     console.log("Method: parkCar");
-    //     brand = ""
-    //     model = ""
-    //     plateNumber = ""
-    //     color = ""
-    //     while(brand === "") {
-    //         brand = prompt("PARK A CAR\nWhat Brand");
-    //     }
-    //     while(model === "") {
-    //         model = prompt("PARK A CAR\nWhat Model");
-    //     }
-    //     while(plateNumber === "") {
-    //         plateNumber = prompt("PARK A CAR\nWhat Platenumber");
-    //     }
-    //     while(color === "") {
-    //         color = prompt("PARK A CAR\nWhat Color");
-    //     }
-    //     parkingspot = prompt("PARK A CAR\nPick a free parkingspot");
-    
-    //     //checks so the position is valid
-    //     parkingspot = this.parkingCheck(parkingspot);
-
-    //     // change the parkingspot to red in the grid
-    //     this.changeToRed(parkingspot);
-    
-    //     //adds the car to the garage
-    //     this.parkingspots.push(new Car(brand, model, plateNumber, color, parkingspot));
-        
-    //     this.sortGarage();
-    // },
-
     parkCarInSpot: function(parkingspot) {
         console.log("Method: parkCarInSpot");
-        parkingspot++;
         //checks so the position is unoccupied
         for(let i in this.parkingspots) {
             if(parkingspot == this.parkingspots[i].parkingspot) {
@@ -89,49 +56,13 @@ let garage = {
         this.sortGarage();
     },
 
-    // parkingCheck: function(parkingspot) {
-    //     console.log("Method: parkingCheck");
-    //     //checks if the position is a positive number and between 1-14
-    //     while(Math.sign(parkingspot) != 1 || parkingspot > 14) {
-    //         parkingspot = prompt('PARKINGSPOT NEED TO BE A POSITIVE NUMBER\nWhat parkingspot do you want to park the car in (1-14)');
-    //     }
-    
-    //     //checks if the spot is occupied and informs the user what spots are occupied
-    //     freespots = ""
-    //     for(let i in this.parkingspots) {
-    //         freespots += this.parkingspots[i].parkingspot + ", ";
-    //     }
-        
-    //     for(let i in this.parkingspots) {
-    //         if(parkingspot == this.parkingspots[i].parkingspot) {
-    //             parkingspot = prompt(`PARKINGSPOT IS ALREADY OCCUPIED\n${freespots} are all occupied\nWhat parking spot do you want to park the car in (1-14)`);
-    //             parkingspot = this.parkingCheck(parkingspot);
-    //         }
-    //     }
-    //     return parkingspot;
-    // },
-
     sortGarage: function() {
         console.log("Method: sortingTheGarage")
         this.parkingspots.sort(function(a, b){return a.parkingspot - b.parkingspot});
     },
 
-    // unparkCar: function() {
-    //     console.log("Method: unparkCar");
-    //     parkingspot = prompt("UNPARK A CAR\nRemove the car in parkingspot");
-    //     for(let i in this.parkingspots) {
-    //         if(parkingspot == this.parkingspots[i].parkingspot) {
-    //             this.parkingspots.splice(i, 1);
-    //         }
-    //     }
-    //     // change the parkingspot to grey in the grid
-    //     this.changeToGrey(parkingspot);
-    // },
-
     unparkCarInSpot: function(parkingspot) {
         console.log("Method: unparkCarInSpot");
-        parkingspot++;
-
         for(let i in this.parkingspots) {
             //if true unpark the car in the spot
             if(parkingspot == this.parkingspots[i].parkingspot) {
@@ -147,9 +78,8 @@ let garage = {
         document.getElementById("output").innerHTML = "There is no car in this parkingspot";
     },
 
-    showCarInSpot: function() {
-        console.log("Method: showCarInspot");
-        parkingspot = prompt("SHOW CAR\nShow the car in parkingspot");
+    showCarInSpot: function(parkingspot) {
+        console.log("Method: showCarInSpot");
 
         message = this.spotCheck(parkingspot);
 
@@ -181,165 +111,48 @@ let garage = {
     changeToGrey: function(parkingspot) {
         console.log("Method: changeToGray");
         document.getElementById("pos" + parkingspot).style.backgroundColor = "rgb(95, 95, 95)";
-    },
-
-    clearOutput: function() {
-        document.getElementById("output").innerHTML = "";
     }
 }
 
 
-document.getElementById("park-car").addEventListener("click", function() {
-    garage.parkCar();
-    garage.clearOutput();
-})
-
-document.getElementById("unpark-car").addEventListener("click", function() {
-    garage.unparkCar();
-    garage.clearOutput();
-})
-
-document.getElementById("get-info").addEventListener("click", function() {
-    garage.showCarInSpot();
-})
-
-
-//park a car on hover-click
-let positionPark = [];
-for(i = 0; i < 14; i++) {
-    positionPark[i] = document.querySelector(`div#pos${i+1} > div > button:first-child`);
-}
-
-positionPark[0].addEventListener("click", function() {
-    garage.parkCarInSpot(0)
-})
-
-positionPark[1].addEventListener("click", function() {
-    garage.parkCarInSpot(1)
-})
-
-positionPark[2].addEventListener("click", function() {
-    garage.parkCarInSpot(2)
-})
-
-positionPark[3].addEventListener("click", function() {
-    garage.parkCarInSpot(3)
-})
-
-positionPark[4].addEventListener("click", function() {
-    garage.parkCarInSpot(4)
-})
-
-positionPark[5].addEventListener("click", function() {
-    garage.parkCarInSpot(5)
-})
-
-positionPark[6].addEventListener("click", function() {
-    garage.parkCarInSpot(6)
-})
-
-positionPark[7].addEventListener("click", function() {
-    garage.parkCarInSpot(7)
-})
-
-positionPark[8].addEventListener("click", function() {
-    garage.parkCarInSpot(8)
-})
-
-positionPark[9].addEventListener("click", function() {
-    garage.parkCarInSpot(9)
-})
-
-positionPark[10].addEventListener("click", function() {
-    garage.parkCarInSpot(10)
-})
-
-positionPark[11].addEventListener("click", function() {
-    garage.parkCarInSpot(11)
-})
-
-positionPark[12].addEventListener("click", function() {
-    garage.parkCarInSpot(12)
-})
-
-positionPark[13].addEventListener("click", function() {
-    garage.parkCarInSpot(13)
-})
-
-
-//unpark a car on hover-click
-let positionUnpark = [];
-for(i = 0; i < 14; i++) {
-    positionUnpark[i] = document.querySelector(`div#pos${i+1} > div > button:nth-child(2)`);
-}
-
-positionUnpark[0].addEventListener("click", function() {
-    garage.unparkCarInSpot(0)
-})
-
-positionUnpark[1].addEventListener("click", function() {
-    garage.unparkCarInSpot(1)
-})
-
-positionUnpark[2].addEventListener("click", function() {
-    garage.unparkCarInSpot(2)
-})
-
-positionUnpark[3].addEventListener("click", function() {
-    garage.unparkCarInSpot(3)
-})
-
-positionUnpark[4].addEventListener("click", function() {
-    garage.unparkCarInSpot(4)
-})
-
-positionUnpark[5].addEventListener("click", function() {
-    garage.unparkCarInSpot(5)
-})
-
-positionUnpark[6].addEventListener("click", function() {
-    garage.unparkCarInSpot(6)
-})
-
-positionUnpark[7].addEventListener("click", function() {
-    garage.unparkCarInSpot(7)
-})
-
-positionUnpark[8].addEventListener("click", function() {
-    garage.unparkCarInSpot(8)
-})
-
-positionUnpark[9].addEventListener("click", function() {
-    garage.unparkCarInSpot(9)
-})
-
-positionUnpark[10].addEventListener("click", function() {
-    garage.unparkCarInSpot(10)
-})
-
-positionUnpark[11].addEventListener("click", function() {
-    garage.unparkCarInSpot(11)
-})
-
-positionUnpark[12].addEventListener("click", function() {
-    garage.unparkCarInSpot(12)
-})
-
-positionUnpark[13].addEventListener("click", function() {
-    garage.unparkCarInSpot(13)
-})
-
-
-//shows the buttons on hover
 let allParkingSpots = document.querySelectorAll("div[id*= pos]");
 let btnGroup = document.querySelectorAll(".btn-group");
+let position = [];
 
-for(let i in allParkingSpots) {
+for(let i = 0; i < 14; i++) {
+    //shows the buttons on hover
     allParkingSpots[i].addEventListener("mouseover", function() {
         btnGroup[i].style.visibility="visible"
     })
 
     allParkingSpots[i].addEventListener("mouseout", function() {
         btnGroup[i].style.visibility="hidden"
+    })
+
+    //park a car on hover-button click
+    position[i] = document.querySelector(`div#pos${i+1} > div > button:first-child`);
+
+    position[i].addEventListener("click", function(e) {
+        let positionNumber = e.target.parentNode.parentNode.innerText
+        positionNumber = positionNumber[0];
+        garage.parkCarInSpot(positionNumber);
+    })
+
+    //unpark a car on hover-button click
+    position[i] = document.querySelector(`div#pos${i+1} > div > button:nth-child(2)`);
+
+    position[i].addEventListener("click", function(e) {
+        let positionNumber = e.target.parentNode.parentNode.innerText
+        positionNumber = positionNumber[0];
+        garage.unparkCarInSpot(positionNumber)
+    })
+
+    //show info of a car on hover-button click
+    position[i] = document.querySelector(`div#pos${i+1} > div > button:last-child`);
+
+    position[i].addEventListener("click", function(e) {
+        let positionNumber = e.target.parentNode.parentNode.innerText
+        positionNumber = positionNumber[0];
+        garage.showCarInSpot(positionNumber)
     })
 }
